@@ -51,10 +51,9 @@ Node* search(Node* root, int id) {
     if (id < root->id) {
         return search(root->left, id);
     }
+
     // Se ID é maior, buscar na subárvore direita
-    else {
-        return search(root->right, id);
-    }
+    return search(root->right, id);
 }
 
 // Função para encontrar o nó com menor valor (mais à esquerda)
@@ -62,6 +61,7 @@ Node* findMin(Node* root) {
     while (root->left != NULL) {
         root = root->left;
     }
+
     return root;
 }
 
@@ -88,29 +88,28 @@ Node* deleteNode(Node* root, int id) {
             return NULL;
         }
         // Caso 2: Nó com apenas um filho
-        else if (root->left == NULL) {
+        if (root->left == NULL) {
             Node* temp = root->right;
             free(root);
             return temp;
         }
-        else if (root->right == NULL) {
+        if (root->right == NULL) {
             Node* temp = root->left;
             free(root);
             return temp;
         }
+
         // Caso 3: Nó com dois filhos
-        else {
-            // Encontrar o sucessor in-ordem (menor valor na subárvore direita)
-            Node* temp = findMin(root->right);
+        // Encontrar o sucessor in-ordem (menor valor na subárvore direita)
+        Node* temp = findMin(root->right);
 
-            // Copiar os dados do sucessor para este nó
-            root->id = temp->id;
-            strcpy(root->title, temp->title);
-            strcpy(root->author, temp->author);
+        // Copiar os dados do sucessor para este nó
+        root->id = temp->id;
+        strcpy(root->title, temp->title);
+        strcpy(root->author, temp->author);
 
-            // Remover o sucessor
-            root->right = deleteNode(root->right, temp->id);
-        }
+        // Remover o sucessor
+        root->right = deleteNode(root->right, temp->id);
     }
     return root;
 }
@@ -130,6 +129,7 @@ int countBooks(Node* root) {
     if (root == NULL) {
         return 0;
     }
+
     return 1 + countBooks(root->left) + countBooks(root->right);
 }
 
@@ -140,6 +140,7 @@ int treeHeight(Node* root) {
     }
     int leftHeight = treeHeight(root->left);
     int rightHeight = treeHeight(root->right);
+
     return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
 }
 
