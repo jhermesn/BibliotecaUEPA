@@ -16,14 +16,14 @@ typedef struct Node {
 } Node;
 
 // Protótipos das funções
-Node* createNode(int id, char* title, char* author);
+Node* createNode(int id, const char* title, const char* author);
 Node* insert(Node* root, int id, char* title, char* author);
 Node* search(Node* root, int id);
 Node* findMin(Node* root);
 Node* deleteNode(Node* root, int id);
 void inorderTraversal(Node* root);
-int countBooks(Node* root);
-int treeHeight(Node* root);
+int countBooks(const Node* root);
+int treeHeight(const Node* root);
 void displayMenu();
 void clearInputBuffer();
 

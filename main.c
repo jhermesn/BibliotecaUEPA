@@ -6,9 +6,9 @@
 
 // Função principal
 int main() {
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "");
 
-    Node* root = NULL;
+    Node* root = nullptr;
     int choice, id;
     char title[100], author[100];
 

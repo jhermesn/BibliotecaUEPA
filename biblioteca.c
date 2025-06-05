@@ -1,17 +1,17 @@
 #include "biblioteca.h"
 
 // Função para criar um novo nó
-Node* createNode(int id, char* title, char* author) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
+Node* createNode(int id, const char* title, const char* author) {
+    Node* newNode = malloc(sizeof(Node));
     if (newNode == NULL) {
         printf("Erro ao alocar memória!\n");
-        return NULL;
+        return nullptr;
     }
     newNode->id = id;
     strcpy(newNode->title, title);
     strcpy(newNode->author, author);
-    newNode->left = NULL;
-    newNode->right = NULL;
+    newNode->left = nullptr;
+    newNode->right = nullptr;
     return newNode;
 }
 
@@ -85,7 +85,7 @@ Node* deleteNode(Node* root, int id) {
         // Caso 1: Nó sem filhos (folha)
         if (root->left == NULL && root->right == NULL) {
             free(root);
-            return NULL;
+            return nullptr;
         }
         // Caso 2: Nó com apenas um filho
         if (root->left == NULL) {
@@ -125,7 +125,7 @@ void inorderTraversal(Node* root) {
 }
 
 // Função para contar o número de livros
-int countBooks(Node* root) {
+int countBooks(const Node* root) {
     if (root == NULL) {
         return 0;
     }
@@ -134,7 +134,7 @@ int countBooks(Node* root) {
 }
 
 // Função para calcular a altura da árvore
-int treeHeight(Node* root) {
+int treeHeight(const Node* root) {
     if (root == NULL) {
         return -1;
     }
